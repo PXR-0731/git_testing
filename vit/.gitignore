@@ -1,4 +1,5 @@
-# ignore weights
+# ignore weights and cashe
 weights/*
+__pycache__/*
 
 vit_base_patch16_224_in21k.pth

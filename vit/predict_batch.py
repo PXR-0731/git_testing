@@ -1,91 +1,4 @@
 import os
-import shutil
-
-def refilename(filepath, renames_list):
-
-    name_list = os.listdir(filepath)
-    if filepath[-1] != '/':
-        filename = filepath + '/'
-    else:
-        filename = filepath
-    
-    suffix = name_list[0][name_list[0].find('.'):]
-    for i in range(len(name_list)):
-        name = name_list[i]
-        rename = renames_list[i]
-        os.rename(filename+name, filename+rename+suffix)
-        # shutil.move(filename+rename+suffix, )
-    
-    return 1
-
-def main():
-    name_list = [f'{i}' for i in range(3001, 4001)]
-    print(refilename('C:/Users/shuyu/Desktop/Data_new/前轮眉/4/', name_list))
-
-# if __name__ == '__main__':
-#     main()
-
-
-
-# import json
-# a = os.listdir('C:/Users/shuyu/Desktop/deep-learning-for-image-processing-master/deep-learning-for-image-processing-master/pytorch_classification/vision_transformer/data/company_data')
-# print(a.sort())
-# class_indices = dict((k, v) for v, k in enumerate(a))
-# json_str = json.dumps(dict((val, key) for key, val in class_indices.items()), indent=4,ensure_ascii=False)
-# print(json_str)
-# with open('class_indices.json', 'w', encoding='utf-8') as json_file:
-#     json_file.write(json_str)
-
-'''
-generate the dataset and load
-'''
-# from utils import read_split_data
-
-# train_images_path, train_images_label, val_images_path, val_images_label = read_split_data('./data/company_data')
-
-# from my_dataset import MyDataSet
-# from torchvision import transforms
-# import torch
-
-# data_transform = {
-#     "train": transforms.Compose([transforms.RandomResizedCrop(224),
-#                                     transforms.RandomHorizontalFlip(),
-#                                     transforms.ToTensor(),
-#                                     transforms.Normalize([0.5, 0.5, 0.5], [0.5, 0.5, 0.5])]),
-#     "val": transforms.Compose([transforms.Resize(256),
-#                                 transforms.CenterCrop(224),
-#                                 transforms.ToTensor(),
-#                                 transforms.Normalize([0.5, 0.5, 0.5], [0.5, 0.5, 0.5])])}
-
-# val_dataset = MyDataSet(images_path=val_images_path,
-#                         images_class=val_images_label,
-#                         transform=data_transform["val"])
-
-# nw = min([os.cpu_count(), 8])
-# val_loader = torch.utils.data.DataLoader(val_dataset,
-#                                             batch_size=8,
-#                                             shuffle=False,
-#                                             pin_memory=True,
-#                                             num_workers=nw,
-#                                             collate_fn=lambda x:x)
-
-
-
-
-# import tqdm
-# import sys
-# print(val_loader)
-# data_loader = val_loader
-# for i, j in enumerate(val_loader):
-#     print(i, j)
-
-
-# data_loader = tqdm(data_loader, file=sys.stdout)
-# for step, data in enumerate(data_loader):
-#     print(data)
-
-
-
 
 '''
 predict
@@ -151,7 +64,6 @@ def handle_test_data(root: str):
 
 
 
-
 from torchvision import transforms
 from my_dataset_predict import MyDataSet
 import torch
@@ -192,7 +104,6 @@ def evaluate(model, data_loader, device, epoch):
                                                                                accu_num.item() / sample_num)
 
     return accu_loss.item() / (step + 1), accu_num.item() / sample_num, wrong_data
-
 
 
 if __name__=="__main__":
@@ -237,7 +148,8 @@ if __name__=="__main__":
     # create model
     model = create_model(num_classes=6, has_logits=False).to(device)
     # load model weights
-    model_weight_path = "./weights/model-0.pth"
+    cur_dir = '/'.join(os.path.abspath(__file__).split('\\')[0:-1])
+    model_weight_path = os.path.join(cur_dir, "weights/model-29.pth")
     model.load_state_dict(torch.load(model_weight_path, map_location=device))
     model.eval()
     with torch.no_grad():
