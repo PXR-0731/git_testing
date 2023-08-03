@@ -166,8 +166,8 @@ def parse_condition(sentence, data):
 
 
 if __name__=='__main__':
-    question = input('input an question:')
+    question = '厚度在0到5毫米的产品' # input('input an question:')
     data = parse_sentence(question)
-    print(data)
+    # print(data)
     condition = parse_condition(question, data)
     print(condition)
