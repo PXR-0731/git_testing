@@ -114,4 +114,5 @@ def main():
 
 if __name__ == '__main__':
     # main()
-    print(predict("./20.png"))
+    cur_dir = ('/').join(os.path.abspath(__file__).split('\\')[:-1])
+    print(predict(os.path.join(cur_dir, "20.png")))
