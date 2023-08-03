@@ -76,7 +76,8 @@ def main():
          transforms.Normalize([0.5, 0.5, 0.5], [0.5, 0.5, 0.5])])
 
     # load image
-    img_path = "./20.png"
+    cur_dir = ('/').join(os.path.abspath(__file__).split('\\')[:-1])
+    img_path = os.path.join(cur_dir, "20.png")
     assert os.path.exists(img_path), "file: '{}' dose not exist.".format(img_path)
     img = Image.open(img_path)
     plt.imshow(img)
@@ -95,7 +96,7 @@ def main():
     # create model
     model = create_model(num_classes=6, has_logits=False).to(device)
     # load model weights
-    model_weight_path = "./weights/model-29.pth"
+    model_weight_path = os.path.join(cur_dir, "weights/model-29.pth")
     model.load_state_dict(torch.load(model_weight_path, map_location=device))
     model.eval()
     with torch.no_grad():
