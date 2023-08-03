@@ -89,11 +89,16 @@
 
 # parser.release()
 
+# encoding: utf-8
+# _*_ coding:utf-8 _*_
+import os
+from pyltp import Segmentor
+from pyltp import Postagger
+from pyltp import Parser
 
 def parse_sentence(sentence):
     # 分词
-    import os
-    from pyltp import Segmentor
+
     LTP_DATA_DIR='D:/ltp_data_v3.4.0/ltp_data_v3.4.0'
     cws_model_path=os.path.join(LTP_DATA_DIR,'cws.model')
     segmentor=Segmentor(cws_model_path)
@@ -103,7 +108,7 @@ def parse_sentence(sentence):
 
 
     # 词性标注
-    from pyltp import Postagger
+
     pdir=os.path.join(LTP_DATA_DIR,'pos.model')
     pos = Postagger(pdir)   
     postags = pos.postag(words)
@@ -114,7 +119,7 @@ def parse_sentence(sentence):
     
 
     #依存句法分析
-    from pyltp import Parser
+
     parmodel = os.path.join(LTP_DATA_DIR, 'parser.model')
     parser = Parser(parmodel)                         # 初始化命名实体实例并加载模型
     arcs = parser.parse(words, postags)               # 句法分析
