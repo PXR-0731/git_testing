@@ -79,7 +79,7 @@ def main(args):
     # load image
     # cur_dir = ('/').join(os.path.abspath(__file__).split('\\')[:-1])
     # img_path = os.path.join(cur_dir, "20.png")
-    img_path = os.path.join("./vit/20.png")
+    img_path = "./vit/20.png"
     assert os.path.exists(img_path), "file: '{}' dose not exist.".format(img_path)
     img = Image.open(img_path)
     plt.imshow(img)
@@ -89,7 +89,7 @@ def main(args):
     img = torch.unsqueeze(img, dim=0)
 
     # read class_indict
-    json_path = os.path.join(cur_dir, 'class_indices.json')
+    json_path = "./vit/class_indices.json"# os.path.join(cur_dir, 'class_indices.json')
     assert os.path.exists(json_path), "file: '{}' dose not exist.".format(json_path)
 
     with open(json_path, "r", encoding='utf-8') as f:
