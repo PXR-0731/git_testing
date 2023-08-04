@@ -148,7 +148,7 @@ if __name__=="__main__":
     # create model
     model = create_model(num_classes=6, has_logits=False).to(device)
     # load model weights
-    cur_dir = '/'.join(os.path.abspath(__file__).split('\\')[0:-1])
+    cur_dir = '/'.join(os.path.abspath(__file__).split('\\')[:-1])
     model_weight_path = os.path.join(cur_dir, "weights/model-29.pth")
     model.load_state_dict(torch.load(model_weight_path, map_location=device))
     model.eval()
