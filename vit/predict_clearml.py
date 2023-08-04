@@ -77,8 +77,9 @@ def main(args):
          transforms.Normalize([0.5, 0.5, 0.5], [0.5, 0.5, 0.5])])
 
     # load image
-    cur_dir = ('/').join(os.path.abspath(__file__).split('\\')[:-1])
-    img_path = os.path.join(cur_dir, "20.png")
+    # cur_dir = ('/').join(os.path.abspath(__file__).split('\\')[:-1])
+    # img_path = os.path.join(cur_dir, "20.png")
+    img_path = os.path.join("./vit/20.png")
     assert os.path.exists(img_path), "file: '{}' dose not exist.".format(img_path)
     img = Image.open(img_path)
     plt.imshow(img)
@@ -121,20 +122,6 @@ if __name__ == '__main__':
     from argparse import ArgumentParser
     # adding command line interface, so it is easy to use
     parser = ArgumentParser()
-    parser.add_argument('--dataset', default='', type=str, help='Dataset ID to train on')
+    parser.add_argument('--dataset', default='cb3e81df0c904d238bb73ec213dac9df', type=str, help='Dataset ID to train on')
     args = parser.parse_args()
     main(args)
-
-    # # creating a task, so that later we could override the argparse from UI
-    # task = Task.init(project_name='examples', task_name='dataset demo')
-
-    # getting a local copy of the dataset
-
-    # # go over the files in `dataset_folder` and train your model
-
-    # device, model = load_model(weights)
-
-    # cur_dir = ('/').join(os.path.abspath(__file__).split('\\')[:-1])
-    # print(predict(os.path.join(cur_dir, "20.png")))
-
-    # main()
