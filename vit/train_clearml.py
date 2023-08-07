@@ -116,9 +116,9 @@ def main(args):
         tb_writer.add_scalar(tags[4], optimizer.param_groups[0]["lr"], epoch)
 
         if epoch==args.epochs-1:
-            torch.save(model.state_dict(), "./vit/weights/model-{}.pth".format(epoch))
+            torch.save(model.state_dict(), "./vit/model-{}.pth".format(epoch))
             dataset = Dataset.create(dataset_name="model-{}.pth".format(epoch),dataset_project='vit_data')
-            dataset.add_files("./vit/weights/model-{}.pth".format(epoch))
+            dataset.add_files("./vit/model-{}.pth".format(epoch))
             dataset.upload()
             dataset.finalize()
 
